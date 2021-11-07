@@ -9,24 +9,24 @@ end = dt.datetime.today()
 start = (dt.datetime.now() - dt.timedelta(days = 36500)).strftime("%m-%d-%Y")
 dfs = []
 def get_fed_data(DataSetName, raw = True):
-"""
-Function to retrieve the FRED data series for the given dataset code.
-args: DataSetName (str), raw (bool) default is True, False will transform to log percentage change
-returns: merged collection of variables on a monthly timeframe
-"""
+    """
+    Function to retrieve the FRED data series for the given dataset code.
+    args: DataSetName (str), raw (bool) default is True, False will transform to log percentage change
+    returns: merged collection of variables on a monthly timeframe
+    """
     for i in DataSetName:
         fred = web.DataReader(f'{i}', 'fred', start, end)
         fred = fred.reset_index()
         fred = fred.rename(columns={'DATE':'Date'})
-    if raw == True:
-      pass
-    else:
-      fred[f'{i}_lnpctchng'] = (np.log(fred[f'{i}'] - np.log(fred[f'{i}'].shift(1)))/np.log(fred[f'{i}'].shift(1)))
-      fred = fred.drop(columns = i)
-    dfs.append(fred)
-  final_fred = reduce(lambda left,right: pd.merge(left, right, on=['Date'], how = 'outer'), dfs)
+        if raw == True:
+          pass
+        else:
+          fred[f'{i}_lnpctchng'] = (np.log(fred[f'{i}'] - np.log(fred[f'{i}'].shift(1)))/np.log(fred[f'{i}'].shift(1)))
+          fred = fred.drop(columns = i)
+        dfs.append(fred)
+    final_fred = reduce(lambda left,right: pd.merge(left, right, on=['Date'], how = 'outer'), dfs)
 
-  return final_fred
+    return final_fred
 
 
 variables = ['JTSTSR', 'CES0500000035', 'FEDMINNFRWG','JTSJOR', 'LNS13023706', 'CSUSHPINSA',
@@ -44,5 +44,5 @@ seperations_table_raw = seperations_table_raw.rename(columns = {'JTSTSR': 'seper
                                                                 'CES0000000039': 'women_ratio', 'JTSHIR': 'hires', 'LCEAPR01USM189S': 'hourly_earn', 'LNS12026619': 'multiple_jobs', 'CPIAUCSL': 'cpi', 'CUSR0000SAM2': 'medical_cpi', 'CUSR0000SEEB': 'education_cpi'})
 
 
-seperations_table_raw.to_csv('/Users/brynne/Python/Desktop/Suffolk University/ISOM 837 Data Mining/seperations_table_raw.csv')
-seperations_table_transformed.to_csv('/Users/brynne/Python/Desktop/Suffolk University/ISOM 837 Data Mining/seperations_table_transformed.csv')
+seperations_table_raw.to_csv('/Users/brynne/Python/Desktop/Suffolk University/ISOM 837 Data Mining/seperations_table_raw.csv', index = False)
+seperations_table_transformed.to_csv('/Users/brynne/Python/Desktop/Suffolk University/ISOM 837 Data Mining/seperations_table_transformed.csv', index = False)
