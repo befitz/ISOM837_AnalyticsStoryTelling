@@ -25,9 +25,6 @@ def get_fed_data(DataSetName):
   return final_fred
 
 
-variables = ['CES0000000039', 'LCEAPR01USM189S', 'LNS12027714',
-             'TCU', 'USEPUINDXM', 'AWHNONAG', 'LNU01300012','LNS11300060','LNS11324230','JTS1000QUR', 'CPIAUCSL', 'JTSJOR']
-
 columnNames = {'TCU': 'cap_utilization',
                'USEPUINDXM': 'policy_uncertainty',
                'CES0000000039': 'women_ratio',
