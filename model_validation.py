@@ -115,7 +115,7 @@ if __name__ == '__main__':
     quits = Test_Values(table_raw['quits'])
     lfp_25_54 = Test_Values(table_raw['lfp_25_54'])
 
-    table_final = generate_table_final()
+    table_final = generate_table_final(table_raw)
     #Train/test split
     table_final_TRAIN = table_final[:245]
     table_raw_TEST = table_raw[-6:]
