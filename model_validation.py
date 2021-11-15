@@ -1,4 +1,4 @@
-from data_transformation import generate_table_final
+from data_transformation import *
 from model import model
 
 import numpy as np
@@ -23,6 +23,7 @@ class Test_Values():
     self.min_max = (np.min(series) - np.max(series))/ (np.max(series) - np.min(series))
 
 table_raw = build_seperations_table(variables)
+
 women_ratio = Test_Values(table_raw['women_ratio'])
 hourly_earn = Test_Values(table_raw['hourly_earn'])
 lfp_25_54 = Test_Values(table_raw['lfp_25_54'])
