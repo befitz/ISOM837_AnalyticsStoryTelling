@@ -126,3 +126,6 @@ def results_table(model, Y, x1, x2, x3):
 
 df = results_table(model, quits, women_ratio, lfp_25_54, job_openings)
 final_accuracy = (df['Accuracy'].sum())/5
+print("Average Accuracy: %0.2f" % (final_accuracy*100),"%")
+print('Test Table Details:')
+display(df)
