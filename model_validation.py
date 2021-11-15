@@ -109,11 +109,16 @@ if __name__ == '__main__':
     variables = ['CES0000000039', 'LCEAPR01USM189S', 'LNS12027714',
                  'TCU', 'USEPUINDXM', 'AWHNONAG', 'LNU01300012','LNS11300060','LNS11324230','JTS1000QUR', 'CPIAUCSL', 'JTSJOR']
     table_raw = build_seperations_table(variables)
+    table_transformed = create_transformed_table(table_raw)
+    table_final = standardize_table(table_transformed)
+    table_final = table_final.dropna()
 
     women_ratio = Test_Values(table_raw['women_ratio'])
     job_openings = Test_Values(table_raw['job_openings'])
     quits = Test_Values(table_raw['quits'])
     lfp_25_54 = Test_Values(table_raw['lfp_25_54'])
+    job_openings_inversesqrt= Test_Values(table_transformed['job_openings_inversesqrt'])
+    job_openings_inversesqrt.global
 
     table_final = generate_table_final(table_raw)
     #Train/test split
