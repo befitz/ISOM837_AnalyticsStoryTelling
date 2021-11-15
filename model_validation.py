@@ -118,7 +118,7 @@ if __name__ == '__main__':
     quits = Test_Values(table_raw['quits'])
     lfp_25_54 = Test_Values(table_raw['lfp_25_54'])
     job_openings_inversesqrt= Test_Values(table_transformed['job_openings_inversesqrt'])
-    job_openings_inversesqrt.global
+    global job_openings_inversesqrt
 
     table_final = generate_table_final(table_raw)
     #Train/test split
