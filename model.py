@@ -1,5 +1,5 @@
 from data_transformation import generate_table_final
-
+import pandas as pd
 from statsmodels.formula.api import ols
 import statsmodels.api as sm
 from sklearn.linear_model import LinearRegression
