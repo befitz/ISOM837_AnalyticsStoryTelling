@@ -9,6 +9,11 @@ table_final = generate_table_final()
 #Train/test split
 table_final_TRAIN = table_final[:245]
 table_raw_TEST = table_raw[-6:]
+variables = ['CES0000000039', 'LCEAPR01USM189S', 'LNS12027714',
+             'TCU', 'USEPUINDXM', 'AWHNONAG', 'LNU01300012','LNS11300060','LNS11324230','JTS1000QUR', 'CPIAUCSL', 'JTSJOR']
+
+table_raw = build_seperations_table(variables)
+
 
 def model(table_final_TRAIN):
     """
