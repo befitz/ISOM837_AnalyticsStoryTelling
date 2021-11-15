@@ -1,5 +1,8 @@
 from fred_data_extract import build_seperations_table
 
+variables = ['CES0000000039', 'LCEAPR01USM189S', 'LNS12027714',
+             'TCU', 'USEPUINDXM', 'AWHNONAG', 'LNU01300012','LNS11300060','LNS11324230','JTS1000QUR', 'CPIAUCSL', 'JTSJOR']
+
 table_raw = build_seperations_table(variables)
 
 def create_transformed_table(table_raw):
