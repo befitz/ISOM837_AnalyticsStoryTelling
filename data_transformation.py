@@ -56,10 +56,3 @@ def standardize_table(df):
   table_standardized.reset_index()
 
   return table_standardized
-
-def generate_table_final(table_raw):
-    table_transformed = create_transformed_table(table_raw)
-    table_final = standardize_table(table_transformed)
-    table_final = table_final.dropna()
-
-    return table_final
