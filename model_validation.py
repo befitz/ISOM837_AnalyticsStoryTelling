@@ -22,6 +22,7 @@ class Test_Values():
     self.max_minus_min = np.max(series) - np.min(series)
     self.min_max = (np.min(series) - np.max(series))/ (np.max(series) - np.min(series))
 
+table_raw = build_seperations_table(variables)
 women_ratio = Test_Values(table_raw['women_ratio'])
 hourly_earn = Test_Values(table_raw['hourly_earn'])
 lfp_25_54 = Test_Values(table_raw['lfp_25_54'])
