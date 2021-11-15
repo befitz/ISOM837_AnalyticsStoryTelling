@@ -4,14 +4,6 @@ from model import model
 import numpy as np
 import pandas as pd
 
-table_final = generate_table_final()
-#Train/test split
-table_final_TRAIN = table_final[:245]
-table_raw_TEST = table_raw[-6:]
-
-model = model(table_final_TRAIN)
-
-
 class Test_Values():
   """
   This class is to provide values for the variables WITHOUT transformation. These values are from the RAW data.
@@ -126,9 +118,20 @@ def results_table(model, Y, x1, x2, x3):
   return model_validation
 
 
+if __name__ == '__main__':
+    variables = ['CES0000000039', 'LCEAPR01USM189S', 'LNS12027714',
+                 'TCU', 'USEPUINDXM', 'AWHNONAG', 'LNU01300012','LNS11300060','LNS11324230','JTS1000QUR', 'CPIAUCSL', 'JTSJOR']
+    table_raw = build_seperations_table(variables)
+    table_final = generate_table_final()
+    #Train/test split
+    table_final_TRAIN = table_final[:245]
+    table_raw_TEST = table_raw[-6:]
 
-df = results_table(model, quits, women_ratio, lfp_25_54, job_openings)
-final_accuracy = (df['Accuracy'].sum())/5
-print("Average Accuracy: %0.2f" % (final_accuracy*100),"%")
-print('Test Table Details:')
-display(df)
+    model = model(table_final_TRAIN)
+
+
+    df = results_table(model, quits, women_ratio, lfp_25_54, job_openings)
+    final_accuracy = (df['Accuracy'].sum())/5
+    print("Average Accuracy: %0.2f" % (final_accuracy*100),"%")
+    print('Test Table Details:')
+    display(df)
