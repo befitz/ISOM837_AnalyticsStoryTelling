@@ -1,6 +1,9 @@
 from data_transformation import generate_table_final
 from model import model
 
+import numpy as np
+import pandas as pd
+
 table_final = generate_table_final()
 #Train/test split
 table_final_TRAIN = table_final[:245]
