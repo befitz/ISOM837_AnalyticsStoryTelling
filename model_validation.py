@@ -22,21 +22,6 @@ class Test_Values():
     self.max_minus_min = np.max(series) - np.min(series)
     self.min_max = (np.min(series) - np.max(series))/ (np.max(series) - np.min(series))
 
-table_raw = build_seperations_table(variables)
-
-women_ratio = Test_Values(table_raw['women_ratio'])
-hourly_earn = Test_Values(table_raw['hourly_earn'])
-lfp_25_54 = Test_Values(table_raw['lfp_25_54'])
-lfp_16_19 = Test_Values(table_raw['lfp_16_19'])
-lfp_0ver55 = Test_Values(table_raw['lfp_0ver55'])
-cap_utilization = Test_Values(table_raw['cap_utilization'])
-hours_worked = Test_Values(table_raw['hours_worked'])
-cpi = Test_Values(table_raw['cpi'])
-self_employed= Test_Values(table_raw['self_employed'])
-policy_uncertainty= Test_Values(table_raw['policy_uncertainty'])
-job_openings = Test_Values(table_raw['job_openings'])
-quits = Test_Values(table_raw['quits'])
-
 
 
 def validation_test2(model,Y,x1,x2,x3, test_number):
@@ -124,6 +109,12 @@ if __name__ == '__main__':
     variables = ['CES0000000039', 'LCEAPR01USM189S', 'LNS12027714',
                  'TCU', 'USEPUINDXM', 'AWHNONAG', 'LNU01300012','LNS11300060','LNS11324230','JTS1000QUR', 'CPIAUCSL', 'JTSJOR']
     table_raw = build_seperations_table(variables)
+
+    women_ratio = Test_Values(table_raw['women_ratio'])
+    job_openings = Test_Values(table_raw['job_openings'])
+    quits = Test_Values(table_raw['quits'])
+    lfp_25_54 = Test_Values(table_raw['lfp_25_54'])
+
     table_final = generate_table_final()
     #Train/test split
     table_final_TRAIN = table_final[:245]
@@ -131,9 +122,9 @@ if __name__ == '__main__':
 
     model = model(table_final_TRAIN)
 
-
     df = results_table(model, quits, women_ratio, lfp_25_54, job_openings)
     final_accuracy = (df['Accuracy'].sum())/5
+
     print("Average Accuracy: %0.2f" % (final_accuracy*100),"%")
     print('Test Table Details:')
     display(df)
